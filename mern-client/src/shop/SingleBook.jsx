@@ -33,14 +33,17 @@ const SingleBook = () => {
 
     return (
         <div className='mt-28 px-4 lg:px-24 flex items-start'>
-            <div className="flex flex-col">
-                <img src={imageURL} alt={bookTitle} className='h-96'/>
-                <div>
-                    <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 mr-2 mb-2 transition duration-300">Add to Cart</button>
-                    <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 mr-2 mb-2 transition duration-300">Buy Now</button>
-                    <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 mb-2 transition duration-300">Add to Wishlist</button>
-                </div>
+            <div className="flex flex-col ">
+            <img src={imageURL} alt={bookTitle} className='h-96 lg:h-auto'/>
+            <div className="flex flex-wrap items-center mt-4">
+            <div className="flex flex-col ">
+            
+                <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 mr-2 mb-2 transition duration-300">Add to Cart</button>
+                <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 mr-2 mb-2 transition duration-300">Buy Now</button>
+                <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 mb-2 transition duration-300">Wishlist</button>
             </div>
+
+            </div></div>
             <div className="ml-4">
             <h2 className="text-3xl font-semibold mb-2 text-red-500">{bookTitle}</h2> {/* Apply text-red-500 class */}
                 <h3 className="text-xl font-medium mb-2">{authorName}(author)</h3>

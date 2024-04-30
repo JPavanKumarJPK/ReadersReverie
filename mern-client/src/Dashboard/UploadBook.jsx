@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Button, Checkbox, Label,Select, TextInput, Textarea } from 'flowbite-react';
 
 const UploadBook=()=>{
@@ -29,26 +29,29 @@ const UploadBook=()=>{
   }
  // handle book submission
   const handleBookSubmit=(event)=>{
-    Event.preventDefault();
+    event.preventDefault();
     const form=event.target;
+
     const bookTitle=form.bookTitle.value;
-    const AuthorName=form.AuthorName.value;
+    const authorName=form.authorName.value;
     const imageURL=form.imageURL.value;
     const category=form.categoryName.value;
     const bookDescription=form.bookDescription.value;
     const bookPDFURL=form.bookPDFURL.value;
-    const bookobj={
-      bookTitle,AuthorName,imageURL,category,bookDescription,bookPDFURL
+    const price=form.price.value;
+    const bookObj={
+      bookTitle,authorName,imageURL,category,bookDescription,bookPDFURL,price
     }
-    console.log(bookobj)
-    //send data to
+
+    console.log(bookObj)
+    //send data to db
    fetch("http://localhost:5000/upload-book",{
     method:"POST",
     headers:{
       "Content-type":"application/json",
     },
-    body:stringify(bookObj)
-  }).then(res => res,json()).then(data => {
+    body:JSON.stringify(bookObj)
+  }).then(res => res.json()).then(data => {
     alert("Book Uploaded Sucessfully!!!")
   })
   form.reset();
@@ -113,22 +116,26 @@ const UploadBook=()=>{
                 className="w-full"
                 rows={5}
                 />
-                {/*book pdf link*/}
-                <div>
-                <div className="mb-2 block">
-                <Label
-                 htmlFor="bookPDFURL" 
-                 value="book PDF URL" 
-                 />
-                 </div>
-                <TextInput 
-                id="bookPDFURL" 
-                name="bookPDFURL"
-                type="text" 
-                placeholder="book PDF URL" 
-                required 
-                />
-           </div>
+                {/* last row */}
+              <div className="flex gap-8">
+               
+               <div className='lg:w-1/2'>
+               <div className="mb-2 block">
+               <Label
+                 htmlFor="bookPDFURL" value="book PDF URL" />
+               </div>
+               <TextInput 
+                id="bookPDFURL" name="bookPDFURL"type="text" placeholder="book PDF URL" required  />
+               </div>
+                {/*book price*/}
+               <div className='lg:w-1/2'>
+               <div className="mb-2 block">
+                  <Label htmlFor="price" value="Price" />
+               </div>
+                  <TextInput id="price"name="Price" type="text" placeholder="Price" required />
+               </div>
+               </div>
+ 
            <Button type="submit" className="mt-5">Upload Book</Button>   
       </div>
     </form>
